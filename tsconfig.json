@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"types": [
+			"@girs/adw-1",
+			"@girs/gjs",
+			"@girs/gjs/dom",
+			"@girs/gjs/gjs",
+			"@girs/glib-2.0",
+			"@girs/gobject-2.0",
+			"@girs/gtk-4.0"
+		],
+		"target": "ES2018",
+		"module": "ESNext",
+		"lib": ["ESNext"],
+		"allowJs": false,
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"strict": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"moduleResolution": "bundler",
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+		"ambient.d.ts",
+		"src/**/*"
+	]
+}

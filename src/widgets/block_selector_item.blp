@@ -1,0 +1,21 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfBlockSelectorItem : Adw.Bin {
+	CenterBox {
+		[start]
+		Image {
+			icon-name: "io.github.flying_toast.Workflows";
+		}
+
+		[center]
+		Label titleLabel {}
+
+		[end]
+		Button {
+			clicked => $showInfoDialog();
+			styles [ "flat" ]
+			icon-name: "help-about-symbolic";
+		}
+	}
+}

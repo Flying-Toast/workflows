@@ -1,0 +1,19 @@
+{
+	"tag": "EveryNSeconds",
+	"label": "Interval Timer",
+	"description": "Runs the workflow repeatedly, waiting for a specified amount of time between executions.",
+	"params": [
+		{
+			"tag": "n",
+			"label": "Interval",
+			"description": "Number of seconds to wait between executions.",
+			"typeRestriction": [ "Num" ]
+		},
+		{
+			"tag": "runAtStart",
+			"label": "Run Immediately",
+			"description": "Configure whether the initial execution should occur immediately after starting, or wait for the timeout to occur first.",
+			"typeRestriction": [ "Bool" ]
+		}
+	]
+}

@@ -1,0 +1,27 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfWorkflowListItem : Adw.Bin {
+	styles [ "workflow-list-item" ]
+	Box {
+		EditableLabel label {
+			halign: start;
+			valign: center;
+			hexpand: true;
+			editable: false;
+			margin-end: 8;
+		}
+
+		MenuButton {
+			styles [ "flat" ]
+			halign: end;
+			menu-model: more_menu;
+			icon-name: "view-more-horizontal-symbolic";
+		}
+	}
+}
+
+menu more_menu {
+	item(_("Rename"), "workflow-item.rename")
+	item(_("Delete"), "workflow-item.delete")
+}

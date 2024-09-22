@@ -1,0 +1,49 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfBlock : Adw.Bin {
+	valign: start;
+	Adw.Clamp {
+		maximum-size: 350;
+		ListBox listbox {
+			styles [ "boxed-list" ]
+			ListBoxRow {
+				selectable: false;
+				activatable: false;
+				focusable: false;
+				CenterBox {
+					styles [ "header" ]
+
+					[start]
+					Image {
+						icon-size: large;
+						icon-name: "io.github.flying_toast.Workflows";
+					}
+
+					[center]
+					Label titleLabel {
+						styles [ "title-4" ]
+						wrap: true;
+						justify: center;
+						hexpand: true;
+					}
+
+					[end]
+					MenuButton {
+						styles [ "flat" ]
+						valign: center;
+						icon-name: "view-more-symbolic";
+						menu-model: more_menu;
+					}
+				}
+			}
+		}
+	}
+}
+
+menu more_menu {
+	item (_("Show Info"), "block.info-dialog")
+	item (_("Move Up"), "TODO")
+	item (_("Move Down"), "TODO")
+	item (_("Remove"), "TODO")
+}

@@ -1,0 +1,26 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfBlockInfoDialog : Adw.Dialog {
+	content-width: 300;
+	title: _("Block Info");
+
+	Adw.ToolbarView {
+		[top]
+		Adw.HeaderBar {}
+
+		content: Adw.StatusPage statusPage {
+			styles [ "compact" ]
+			icon-name: "io.github.flying_toast.Workflows";
+			child: Box {
+				orientation: vertical;
+				Adw.PreferencesGroup {
+					title: _("Parameters");
+					ListBox paramList {
+						styles [ "boxed-list" ]
+					}
+				}
+			};
+		};
+	}
+}

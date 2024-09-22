@@ -1,0 +1,23 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfWindow : Adw.ApplicationWindow {
+	default-width: 800;
+	default-height: 600;
+	width-request: 360;
+	height-request: 294;
+	content: Adw.ToastOverlay toastOverlay {
+		child: Adw.NavigationSplitView navView {
+			min-sidebar-width: 250;
+			sidebar: $WfSidebar sidebar {};
+			content: $WfWorkflowView workflowView {};
+		};
+	};
+
+	Adw.Breakpoint {
+		condition ("max-width: 500sp")
+		setters {
+			navView.collapsed: true;
+		}
+	}
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+	<id>io.github.flying_toast.Workflows</id>
+	<name>Workflows</name>
+	<summary>Automate your workflow</summary>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL3</project_license>
+	<developer_name>Flying-Toast</developer_name>
+	<description>
+		<p>Automate your workflow.</p>
+	</description>
+	<screenshots>
+		<screenshot type="default">
+			<image>
+				https://github.com/Flying-Toast/workflows/raw/HEAD/data/screenshots/screenshot-1.png
+			</image>
+		</screenshot>
+		<screenshot>
+			<image>
+				https://github.com/Flying-Toast/workflows/raw/HEAD/data/screenshots/screenshot-2.png
+			</image>
+		</screenshot>
+	</screenshots>
+	<categories>
+		<category>GNOME</category>
+	</categories>
+	<content_rating type="oars-1.1" />
+	<releases>
+		<release version="0.1" date="2023-06-15" />
+	</releases>
+	<url type="homepage">https://github.com/Flying-Toast/workflows</url>
+</component>

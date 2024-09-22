@@ -1,0 +1,61 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfSidebar: Adw.NavigationPage {
+	title: _("Workflows");
+	child: Adw.ToolbarView {
+		[top]
+		Adw.HeaderBar {
+			[start]
+			Button {
+				clicked => $addNewWorkflow();
+				icon-name: "list-add-symbolic";
+				tooltip-text: _("New Workflow");
+			}
+
+			[end]
+			MenuButton {
+				icon-name: "open-menu-symbolic";
+				menu-model: primary_menu;
+				primary: true;
+				tooltip-text: _("Main Menu");
+			}
+		}
+		content: Box {
+			ScrolledWindow {
+				hscrollbar-policy: never;
+				visible: bind statuspage.visible inverted;
+				ListView listview {
+					styles [ "navigation-sidebar" ]
+					hexpand: true;
+				}
+			}
+			Adw.StatusPage statuspage {
+				styles [ "compact" ]
+				title: _("No Workflows");
+				description: "Use the + button to create a workflow.";
+				icon-name: "face-monkey-symbolic";
+				hexpand: true;
+			}
+		};
+	};
+}
+
+menu primary_menu {
+	section {
+		item {
+			label: _('_Preferences');
+			action: 'app.preferences';
+		}
+
+		item {
+			label: _('_Keyboard Shortcuts');
+			action: 'win.show-help-overlay';
+		}
+
+		item {
+			label: _('_About Workflows');
+			action: 'app.about';
+		}
+	}
+}

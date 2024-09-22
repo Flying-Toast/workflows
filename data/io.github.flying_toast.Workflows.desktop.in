@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Workflows
+Exec=io.github.flying_toast.Workflows
+Icon=io.github.flying_toast.Workflows
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

@@ -1,0 +1,13 @@
+{
+	"interface": "org.freedesktop.Appication",
+	"methods": {
+		"Activate": {
+			"label": "Open App",
+			"description": "\"Activate\"s an application, which usually entails opening the app in a new window.",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		}
+	}
+}

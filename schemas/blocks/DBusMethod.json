@@ -1,0 +1,31 @@
+{
+	"tag": "DBusMethod",
+	"label": "Call D-Bus Method",
+	"description": "Invokes a method on the D-Bus session bus.",
+	"params": [
+		{
+			"tag": "busName",
+			"label": "Bus Name",
+			"description": "Name of the connection, e.g. org.gnome.Calendar",
+			"typeRestriction": [ "Str" ]
+		},
+		{
+			"tag": "objectPath",
+			"label": "Object Path",
+			"description": "Path of the object which the interface is implemented on.",
+			"typeRestriction": [ "Str" ]
+		},
+		{
+			"tag": "interface",
+			"label": "Interface",
+			"description": "Interface that contains the method.",
+			"typeRestriction": [ "Str" ]
+		},
+		{
+			"tag": "method",
+			"label": "Method",
+			"description": "The method to invoke.",
+			"typeRestriction": [ "Str" ]
+		}
+	]
+}

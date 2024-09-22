@@ -1,0 +1,8 @@
+.workflow-list-item text {
+	background: none;
+}
+
+.no-vpad {
+	padding-top: 0;
+	padding-bottom: 0;
+}

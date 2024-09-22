@@ -1,0 +1,30 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfParamRow : Gtk.ListBoxRow {
+	activatable: false;
+	selectable: false;
+	focusable: false;
+	child: Box {
+		Label label {
+			halign: start;
+		}
+
+		MenuButton {
+			styles [ "flat" ]
+			halign: end;
+			icon-name: "face-monkey-symbolic";
+			menu-model: mode_menu;
+			valign: center;
+			hexpand: true;
+		}
+	};
+}
+
+menu mode_menu {
+	item (_("Variable"), "entry_row.var_mode")
+	item (_("Text"), "entry_row.text_mode")
+	item (_("Number"), "entry_row.num_mode")
+	item (_("Boolean"), "entry_row.bool_mode")
+	item (_("List"), "entry_row.list_mode")
+}

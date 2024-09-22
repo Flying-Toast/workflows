@@ -1,0 +1,19 @@
+{
+	"tag": "SetVar",
+	"label": "Set Variable",
+	"description": "Sets a variable to the given value. The variable will be created if it doesn't exist, or overwritten if it does exist.",
+	"params": [
+		{
+			"tag": "var",
+			"label": "Variable",
+			"description": "Name of the variable whose value to set.",
+			"typeRestriction": []
+		},
+		{
+			"tag": "val",
+			"label": "Value",
+			"description": "Value to set the variable to. If another variable is given, the value of that variable will be used.",
+			"typeRestriction": null
+		}
+	]
+}

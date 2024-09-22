@@ -1,0 +1,48 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WfWorkflowView : Adw.NavigationPage {
+	title: _("Editor");
+	tag: "workflow_view";
+	child: Adw.ToolbarView {
+		[top]
+		Adw.HeaderBar {}
+		content: ScrolledWindow {
+			hscrollbar-policy: never;
+			Box {
+				orientation: vertical;
+				Box {
+					orientation: vertical;
+					visible: bind unselectedStatusPage.visible inverted;
+					Button {
+						styles [ "pill", "suggested-action" ]
+						halign: center;
+						label: _("Set Trigger");
+						margin-top: 8;
+					}
+					Button {
+						clicked => $openSelectorAtStart();
+						styles [ "circular" ]
+						icon-name: "list-add-symbolic";
+						tooltip-text: _("Insert Block Here");
+						halign: center;
+						margin-top: 8;
+						margin-bottom: 8;
+					}
+					FlowBox blocksFlowbox {
+						halign: center;
+						selection-mode: none;
+					}
+				}
+				Adw.StatusPage unselectedStatusPage {
+					icon-name: "face-sick-symbolic";
+					title: _("No Workflow Selected");
+					description: _("Choose a workflow from the sidebar to edit it.");
+					hexpand: true;
+					valign: center;
+					vexpand: true;
+				}
+			}
+		};
+	};
+}

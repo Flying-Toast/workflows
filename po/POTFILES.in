@@ -1,0 +1,6 @@
+data/io.github.flying_toast.Workflows.desktop.in
+data/io.github.flying_toast.Workflows.appdata.xml.in
+data/io.github.flying_toast.Workflows.gschema.xml
+data/window.ui
+src/main.ts
+src/window.ts
