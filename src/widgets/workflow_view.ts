@@ -12,6 +12,7 @@ export class WorkflowView extends Adw.NavigationPage {
 	private _unselectedStatusPage!: Adw.StatusPage;
 	private _blocksFlowbox!: Gtk.FlowBox;
 	#workflow: Workflow | null = null;
+	#workflowNameBinding: GObject.Binding | null = null;
 
 	static {
 		GObject.registerClass({
@@ -30,7 +31,15 @@ export class WorkflowView extends Adw.NavigationPage {
 
 	set workflow(workflow: Workflow) {
 		this.#workflow = workflow;
-		this.title = workflow.name;
+		if (this.#workflowNameBinding != null) {
+			this.#workflowNameBinding.unbind();
+		}
+		this.#workflowNameBinding = workflow.bind_property(
+			"name",
+			this,
+			"title",
+			GObject.BindingFlags.SYNC_CREATE
+		);
 		this._unselectedStatusPage.visible = false;
 	}
 

@@ -8,6 +8,7 @@ import { Workflow } from "../workflow.js";
 export class WorkflowListItem extends Adw.Bin {
 	private _label!: Gtk.EditableLabel;
 	#workflow: Workflow | null = null;
+	#workflowBindings: GObject.Binding[] = [];
 
 	static {
 		GObject.registerClass({
@@ -23,6 +24,11 @@ export class WorkflowListItem extends Adw.Bin {
 		this.#workflow = workflow;
 		this._label.text = workflow.name;
 
+		for (const binding of this.#workflowBindings) {
+			binding.unbind();
+		}
+		this.#workflowBindings = [];
+
 		const innerLabel = this._label.get_first_child()?.get_first_child();
 		if (innerLabel instanceof Gtk.Label) {
 			innerLabel.ellipsize = Pango.EllipsizeMode.END;
@@ -30,19 +36,24 @@ export class WorkflowListItem extends Adw.Bin {
 			console.error("EditableLabel monkey patch failed :(");
 		}
 
-		this.#workflow.bind_property(
-			"name",
-			this._label,
-			"tooltip-text",
-			GObject.BindingFlags.SYNC_CREATE,
+		this.#workflowBindings.push(
+			this.#workflow.bind_property(
+				"name",
+				this._label,
+				"tooltip-text",
+				GObject.BindingFlags.SYNC_CREATE,
+			)
 		);
 
-		this.#workflow.bind_property(
-			"name",
-			this._label,
-			"text",
-			GObject.BindingFlags.SYNC_CREATE,
+		this.#workflowBindings.push(
+			this.#workflow.bind_property(
+				"name",
+				this._label,
+				"text",
+				GObject.BindingFlags.SYNC_CREATE,
+			)
 		);
+
 		this._label.connect(
 			"notify::editing",
 			(lbl: Gtk.EditableLabel) => {
