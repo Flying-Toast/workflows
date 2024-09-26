@@ -3,7 +3,7 @@ import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 import Gtk from "gi://Gtk?version=4.0";
 import Template from "./block_selector_dialog.blp";
-import { BlockSchema, allBlockSchemas } from "../schema.js";
+import { BlockSchema } from "../schema.js";
 import { BlockSelectorItem } from "./block_selector_item.js";
 
 export class BlockSelectorDialog extends Adw.Dialog {
@@ -26,13 +26,11 @@ export class BlockSelectorDialog extends Adw.Dialog {
 		}, this);
 	}
 
-	constructor() {
+	constructor(items: Gio.ListStore<BlockSchema>) {
 		super();
 
-		allBlockSchemas().then((store) => {
-			this._listview.model = new Gtk.NoSelection({
-				model: store,
-			});
+		this._listview.model = new Gtk.NoSelection({
+			model: items,
 		});
 
 		this._listview.connect("activate", (listview: Gtk.ListView, pos: number) => {

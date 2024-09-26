@@ -1,7 +1,7 @@
 {
 	"tag": "EveryNSeconds",
 	"label": "Interval Timer",
-	"description": "Runs the workflow repeatedly, waiting for a specified amount of time between executions.",
+	"description": "Runs the workflow repeatedly, waiting a specified amount of time between executions.",
 	"params": [
 		{
 			"tag": "n",

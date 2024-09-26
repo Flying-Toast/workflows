@@ -176,19 +176,31 @@ export class TypeRestriction {
 let blockCache: Gio.ListStore<BlockSchema> | null = null;
 export async function allBlockSchemas(): Promise<Gio.ListStore<BlockSchema>> {
 	if (blockCache == null) {
-		blockCache = new Gio.ListStore({ item_type: BlockSchema.$gtype });
-		const schemas = await readAllSchemas("blocks");
-
-		for (const schemaJSON of schemas) {
-			const parsed = BlockSchema.fromJSON(schemaJSON);
-			if (parsed != null) {
-				blockCache.append(parsed);
-			} else {
-				console.error(`error parsing schema:\n${schemaJSON}`);
-			}
-		}
+		blockCache = await uncachedReadBlockSchemasFromSubdir("blocks");
 	}
 	return blockCache;
+}
+
+let triggerCache: Gio.ListStore<BlockSchema> | null = null;
+export async function allTriggerSchemas(): Promise<Gio.ListStore<BlockSchema>> {
+	if (triggerCache == null) {
+		triggerCache = await uncachedReadBlockSchemasFromSubdir("triggers");
+	}
+	return triggerCache;
+}
+
+async function uncachedReadBlockSchemasFromSubdir(subdir: string): Promise<Gio.ListStore<BlockSchema>> {
+	const store = new Gio.ListStore<BlockSchema>({ item_type: BlockSchema.$gtype });
+	const schemas = await readAllSchemas(subdir);
+	for (const schemaJSON of schemas) {
+		const parsed = BlockSchema.fromJSON(schemaJSON);
+		if (parsed != null) {
+			store.append(parsed);
+		} else {
+			console.error(`error parsing schema:\n${schemaJSON}`);
+		}
+	}
+	return store;
 }
 
 async function readAllSchemas(schemasSubdir: string): Promise<string[]> {

@@ -15,6 +15,7 @@ template $WfWorkflowView : Adw.NavigationPage {
 					orientation: vertical;
 					visible: bind unselectedStatusPage.visible inverted;
 					Button {
+						clicked => $openTriggerSelector();
 						styles [ "pill", "suggested-action" ]
 						halign: center;
 						label: _("Set Trigger");
