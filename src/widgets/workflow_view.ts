@@ -4,7 +4,7 @@ import Gtk from "gi://Gtk?version=4.0";
 import Gio from "gi://Gio";
 import Template from "./workflow_view.blp";
 import { Block } from "./block.js";
-import { BlockSchema, allBlockSchemas, allTriggerSchemas } from "../schema.js";
+import { BlockSchema, allBlockSchemas } from "../schema.js";
 import { BlockSelectorDialog } from "./block_selector_dialog.js";
 import { Workflow } from "../workflow.js";
 
@@ -41,23 +41,6 @@ export class WorkflowView extends Adw.NavigationPage {
 			GObject.BindingFlags.SYNC_CREATE
 		);
 		this._unselectedStatusPage.visible = false;
-	}
-
-	openTriggerSelector() {
-		allTriggerSchemas().then((items) => {
-			const dlg = new BlockSelectorDialog(items);
-			dlg.connect(
-				"block-selected",
-				(_selector: BlockSelectorDialog, selectedSchema: BlockSchema) => {
-					this.#setTrigger(selectedSchema);
-				},
-			)
-			dlg.present(this);
-		});
-	}
-
-	#setTrigger(schema: BlockSchema) {
-		console.error(schema);
 	}
 
 	openSelectorAtStart() {
