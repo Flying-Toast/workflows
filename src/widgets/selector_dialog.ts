@@ -2,17 +2,17 @@ import Adw from "gi://Adw";
 import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 import Gtk from "gi://Gtk?version=4.0";
-import Template from "./block_selector_dialog.blp";
+import Template from "./selector_dialog.blp";
 import { BlockSchema, allBlockSchemas } from "../schema.js";
-import { BlockSelectorItem } from "./block_selector_item.js";
+import { SelectorItem } from "./selector_item.js";
 
-export class BlockSelectorDialog extends Adw.Dialog {
+export class SelectorDialog extends Adw.Dialog {
 	private _listview!: Gtk.ListView;
 	private _searchEntry!: Gtk.SearchEntry;
 
 	static {
 		GObject.registerClass({
-			GTypeName: "WfBlockSelectorDialog",
+			GTypeName: "WfSelectorDialog",
 			Template: Template,
 			InternalChildren: [
 				"listview",
@@ -44,11 +44,11 @@ export class BlockSelectorDialog extends Adw.Dialog {
 		this._listview.factory = factory;
 
 		factory.connect("setup", (_: GObject.Object, listItem: Gtk.ListItem) => {
-			listItem.child = new BlockSelectorItem();
+			listItem.child = new SelectorItem();
 		});
 		factory.connect("bind", (_: GObject.Object, listItem: Gtk.ListItem) => {
 			const schema = listItem.item as BlockSchema;
-			const child = listItem.child as BlockSelectorItem;
+			const child = listItem.child as SelectorItem;
 			child.schema = schema;
 		});
 	}

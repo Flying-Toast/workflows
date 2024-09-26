@@ -4,7 +4,7 @@ import Gtk from "gi://Gtk?version=4.0";
 import Template from "./workflow_view.blp";
 import { Block } from "./block.js";
 import { BlockSchema } from "../schema.js";
-import { BlockSelectorDialog } from "./block_selector_dialog.js";
+import { SelectorDialog } from "./selector_dialog.js";
 import { Workflow } from "../workflow.js";
 
 export class WorkflowView extends Adw.NavigationPage {
@@ -33,15 +33,15 @@ export class WorkflowView extends Adw.NavigationPage {
 		this._unselectedStatusPage.visible = false;
 	}
 
-	openSelectorAtStart() {
-		this.#openSelectorAtIndex(0);
+	openBlockSelectorAtStart() {
+		this.#openBlockSelectorAtIndex(0);
 	}
 
-	#openSelectorAtIndex(index: number) {
-		const dlg = new BlockSelectorDialog();
+	#openBlockSelectorAtIndex(index: number) {
+		const dlg = new SelectorDialog();
 		dlg.connect(
 			"block-selected",
-			(_selector: BlockSelectorDialog, selectedSchema: BlockSchema) => {
+			(_selector: SelectorDialog, selectedSchema: BlockSchema) => {
 				const box = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL});
 				box.append(new Block(selectedSchema));
 
@@ -55,7 +55,7 @@ export class WorkflowView extends Adw.NavigationPage {
 				});
 
 				btn.connect("clicked", (_btn) => {
-					this.#openSelectorAtIndex(fbChild.get_index() + 1);
+					this.#openBlockSelectorAtIndex(fbChild.get_index() + 1);
 				});
 
 				this._blocksFlowbox.insert(fbChild, index);
